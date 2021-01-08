@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Upload de Arquivo";
+    string professorId = Context.Request.Query["ProfessorId"].ToString();
+}
+
+@using SistemaProfessoresAlunos.Models;
+@model ArquivoViewModel
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="text-center">
+            <h2>Upload de Arquivo .txt</h2>
+            <hr />
+        </div>
+        <b>Selecione o Arquivo...</b>
+        <br />
+        <form class="form-inline" asp-controller="Arquivo" asp-action="Importar" enctype="multipart/form-data" method="post">
+            <div class="form-group mb-6">
+                <input type="file" class="form-control" name="arquivo" id="arquivo" accept="text/txt" onchange="verificaExtensao()" required>
+            </div>
+            <input type="hidden" class="form-control" name="professorId" value="@professorId">
+            <button type="submit" class="btn btn-primary" style="margin-left: 5px;">Importar Arquivo</button>
+            <br />
+            <span class="text-danger">@Html.ValidationMessage("Error")</span>
+        </form>
+    </div>
+    <br />
+    <div class="col-md-2"></div>
+</div>
+<script>
+    function verificaExtensao() {
+        var extPermitidas = ['txt'];
+        var extArquivo = document.getElementById("arquivo").value.split('.').pop();
+
+        if (typeof extPermitidas.find(function (ext) { return extArquivo == ext; }) == 'undefined') {
+            alert('Extensão "' + extArquivo + '" não permitida!');
+            document.getElementById("arquivo").value = "";
+        }
+    }
+</script>
+

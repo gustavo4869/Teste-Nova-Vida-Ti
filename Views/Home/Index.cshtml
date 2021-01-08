@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Professores";
+}
+
+@using SistemaProfessoresAlunos.Entidades;
+@model List<Professor>
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="text-center">
+                <h2>Professores</h2>
+            </div>
+            <hr />
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td class="text-center" colspan="2">
+                            <b>Nome do Professor</b>
+                        </td>
+                        <td class="text-center">                            
+                            <input type="button" class="btn btn-primary" value="Cadastrar Professor" name="btnCadastrarProfessor" id="btnCadastrarProfessor" onclick="CadastrarProfessor()" />
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td class="text-center">@item.Nome</td>
+                        <td class="text-center" style="cursor:pointer" onclick="EditarProfessor(@item.Id)">Editar</td>
+                        <td class="text-center" style="cursor:pointer" onclick="ConsultarAlunos(@item.Id)">Visualizar Alunos</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>                        
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <script>
+
+        /*
+         * Ao clicar na celular do professor subir modal perguntando se deseja ver lista de alunos ou editar o nome do professor
+        */
+
+        function ConsultarAlunos(id) {
+            window.location = window.origin + "\\Aluno\\Consulta?ProfessorId=" + id;
+        }
+
+        function CadastrarProfessor() {
+            window.location = window.origin + "\\Professor\\Cadastro";
+        }
+
+        function EditarProfessor(id) {
+            window.location = window.origin + "\\Professor\\Cadastro\\" + id;
+        }
+    </script>
+

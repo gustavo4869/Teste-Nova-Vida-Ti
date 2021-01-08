@@ -1,0 +1,26 @@
+﻿@model SistemaProfessoresAlunos.Models.ProfessorViewModel
+
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="text-center">
+                <h2>Cadastro de Professores</h2>
+            </div>
+            <hr />
+            <div>
+                <form asp-controller="Professor" asp-action="Cadastro" method="post">                    
+                    <div class="form-group">
+                        <label for="nomeProfessor">Nome</label>
+                        <input type="text" asp-for="Nome" value="@Model.Nome" class="form-control" placeholder="Nome do Professor">
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                        <input type="hidden" asp-for="Id" value="@Model.Id">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+
+<script>    
+</script>
